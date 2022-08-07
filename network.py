@@ -23,6 +23,7 @@ class Network(object):
         return a
 
     def SGD(self, traning_data, epochs, mini_batch_size, eta, test_data = None):
+        """Stochastic gradient descent training"""
         n_test = 0
         if test_data: n_test = len(test_data)
         n = len(traning_data)
