@@ -90,11 +90,3 @@ class Network(object):
 
     def cost_derivative(self, output_activations, y):
         return (output_activations-y)
-
-
-if __name__ == "__main__":
-    n = Network([2, 3, 1]) # two layers (hidden#1, out#1)
-    print(n.biases)
-    print(n.weights[0])
-    # two layers (hidden#1, out#1)
-    print(n.weights[1])
