@@ -46,18 +46,15 @@ Since we are using the **stochastic gradient descent** technique as our learning
 
 When you run that script again, you'll see the trained results of each epoch:
 
-Epoch 0: 8980 / 10000                                                                                                                                                                         
-Epoch 1: 9162 / 10000                                                                                                                                                                           
-Epoch 2: 9229 / 10000
 ```
 Epoch 0: 8980 / 10000
 Epoch 1: 9162 / 10000
-Epoch 3: 9229 / 10000
+Epoch 2: 9229 / 10000
 ...
 Epoch 29: 9438 / 10000
 ```
 
-As you can see, after just a single epoch this has reached 8980 out of 10,000, and the number continues to grow, and the trained network gives us a classification rate of about 95 percent - *34.38* percent at its peak ("Epoch 29").
+As you can see, after just a single epoch this has reached 8980 out of 10,000, and the number continues to grow, and the trained network gives us a classification rate of about 95 percent - *94.38* percent at its peak ("Epoch 29").
 
 After the training complete, the program will save the trained model in [recongnition_model.pkl](./recongnition_model) for further use.
 
