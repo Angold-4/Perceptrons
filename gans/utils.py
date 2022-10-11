@@ -7,9 +7,6 @@ from IPython import display
 from matplotlib import pyplot as plt
 import torch
 
-'''
-TensorBoard Data will be stored in './runs' path
-'''
 class Logger:
 
     def __init__(self, model_name, data_name):
@@ -59,7 +56,7 @@ class Logger:
             images, nrow=nrows, normalize=True, scale_each=True)
 
         # Add horizontal images to tensorboard
-        self.writer.add_image(img_name, horizontal_grid, step)
+        # self.writer.add_image(img_name, horizontal_grid, step)
 
         # Save plots
         self.save_torch_images(horizontal_grid, grid, epoch, n_batch)
@@ -102,7 +99,6 @@ class Logger:
         if isinstance(d_pred_fake, torch.autograd.Variable):
             d_pred_fake = d_pred_fake.data
         
-        
         print('Epoch: [{}/{}], Batch Num: [{}/{}]'.format(
             epoch,num_epochs, n_batch, num_batches)
              )
@@ -121,7 +117,6 @@ class Logger:
         self.writer.close()
 
     # Private Functionality
-
     @staticmethod
     def _step(epoch, n_batch, num_batches):
         return epoch * num_batches + n_batch

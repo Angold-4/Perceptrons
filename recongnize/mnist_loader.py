@@ -38,7 +38,7 @@ def load_data():
     That's done in the wrapper function ``load_data_wrapper()``, see
     below.
     """
-    f = gzip.open('data/mnist.pkl.gz', 'rb')
+    f = gzip.open('../data/mnist.pkl.gz', 'rb')
     training_data, validation_data, test_data = pickle.load(f, encoding='latin1')
     f.close()
     return (training_data, validation_data, test_data)
@@ -54,7 +54,7 @@ def load_data_wrapper():
     numpy.ndarray representing the unit vector corresponding to the
     correct digit for ``x``.
 
-    ``validation_data`` and ``test_data`` are lists containing 10,000
+    `validation_data`` and ``test_data`` are lists containing 10,000
     2-tuples ``(x, y)``.  In each case, ``x`` is a 784-dimensional
     numpy.ndarry containing the input image, and ``y`` is the
     corresponding classification, i.e., the digit values (integers)
@@ -87,4 +87,3 @@ def vectorized_result(j):
     e = np.zeros((10, 1))
     e[j] = 1.0
     return e
-

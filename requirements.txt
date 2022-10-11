@@ -1,0 +1,12 @@
+torchvision
+tensorboardx
+jupyter
+matplotlib 
+numpy
+
+opencv-python
+scipy
+ipython
+pandas
+sympy
+nose

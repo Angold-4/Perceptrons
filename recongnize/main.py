@@ -4,7 +4,7 @@ import numpy as np
 import cv2
 
 # load the trained model
-with open('recongnition_model.pkl', 'rb') as f:
+with open('../model/recongnition_model.pkl', 'rb') as f:
     net = pickle.load(f)
 
 # total arguments
@@ -24,10 +24,10 @@ for i in range(len(sam_array)):
     new_array.append(sam_array[i,0]/255)
 
 input_sample = np.array(new_array).reshape((784, 1))
+print(input_sample)
 results = net.feedforward(input_sample)
 test_results = np.argmax(results)
 
 print("Recognized Value: {0}".format(test_results))
 value = results[test_results] * 100
 print("Confidence: " + format(value) + "%")
-

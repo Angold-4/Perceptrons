@@ -8,15 +8,12 @@ from matplotlib import pyplot as plt
 from IPython import display
 
 generator_model = GeneratorNet()
-generator_model.load_state_dict(torch.load("./model/199generator.pth"))
+generator_model.load_state_dict(torch.load("../model/199generator.pth"))
 
 test_noise = train.noise(1) # random
 
 gen_img = vec2img(generator_model(test_noise))
 images = gen_img.data.cpu()
-
-# images = gen_img.transpose(1,3)
-# images = torch.from_numpy(gen_img)
 
 # Make horizontal grid from image tensor
 horizontal_grid = vutils.make_grid(
@@ -31,14 +28,5 @@ fig = plt.figure(figsize=(16, 16))
 plt.imshow(np.moveaxis(horizontal_grid.numpy(), 0, -1))
 plt.axis('off')
 display.display(plt.gcf())
-fig.savefig('out.png')
+fig.savefig('out.png') # ignore this error if you are using pyright
 plt.close()
-
-"""
-# Save squared
-fig = plt.figure()
-plt.imshow(np.moveaxis(grid.numpy(), 0, -1))
-plt.axis('off')
-self._save_images(fig, epoch, n_batch)
-plt.close()
-"""

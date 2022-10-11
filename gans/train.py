@@ -107,9 +107,6 @@ def main():
             # 1. Train the discriminator
             real_data = Variable(img2vec(real_batch))
             fake_data = generator(noise(N)).detach()
-            # generate a new tensor using generator
-
-            # Train D
             d_error, d_pred_real, d_pred_fake = \
                     train_discriminator(d_optimizer, real_data, fake_data)
 
@@ -118,24 +115,26 @@ def main():
             g_error = train_generator(g_optimizer, fake_data)
 
             # Log batch error
-            logger.log(d_error, g_error, epoch, n_batch, num_batches)
+            # logger.log(d_error, g_error, epoch, n_batch, num_batches)
 
             # Display Progress every few batches
             if (n_batch) % 100 == 0: 
-                test_images = vec2img(generator(test_noise))
-                test_images = test_images.data.cpu()
-                logger.log_images(
-                    test_images, num_test_samples, 
-                    epoch, n_batch, num_batches
-                );
-                # Display status Logs
-                logger.display_status(
-                    epoch, num_epochs, n_batch, num_batches,
-                    d_error, g_error, d_pred_real, d_pred_fake
-                )
+                if (epoch % 5) == 0:
+                    # save an image
+                    test_images = vec2img(generator(test_noise))
+                    test_images = test_images.data.cpu()
+                    logger.log_images(
+                        test_images, num_test_samples, 
+                        epoch, n_batch, num_batches
+                    );
+                    # Display status Logs
+                    logger.display_status(
+                        epoch, num_epochs, n_batch, num_batches,
+                        d_error, g_error, d_pred_real, d_pred_fake
+                    )
 
-        torch.save(generator.state_dict(), "./model/" + str(epoch) + "generator.pth")
-        torch.save(discriminator.state_dict(), "./model/" + str(epoch) + "discriminator.pth")
+    torch.save(generator.state_dict(), "../model/" + str(num_epochs) + "generator.pth")
+    torch.save(discriminator.state_dict(), "../model/" + str(num_epochs) + "discriminator.pth")
 
 if __name__ == "__main__":
     main()
