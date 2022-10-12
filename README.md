@@ -1,93 +1,66 @@
-# Perceptrons
-Using neural nets to recognize handwritten digits, follow the tutorial made by Michael Nielsen.
+# Perceptions
 
-![digits](./photo/digits.png)
+A small application based on both supervised and unsupervised learning performed on MNIST dataset.
 
-In each hemisphere of our brain, humans have a primary visual cortex, also known as V1, containing *140* million neurons, with tens of billions of connections between them. And yet human vision involves not just V1, but an entire series of visual cortices - V2, V3, V4, and V5 - doing progressively more complex image processing. **We carry in our heads a supercomputer, tuned by evolution over hundreds of millions of years, and superbly adapted to understand the visual world.**
+## Abstract
 
-In this project we implement a computer program that training a neural network which learns to recognize handwritten digits.
+This application consists of two parts: 
+1. **Generator**: a [GAN](https://en.wikipedia.org/wiki/Generative_adversarial_network) performing learning directly on the unlabled MNIST dataset in order to generate MNIST-like handwritten data.
+2. **Recognizer**: a small neural network performing supervised learning on labeled MNIST dataset in order to recognize MNIST-like handwritten data.
 
-## Quick Start
+## Installation
 
-### Prerequises
-
-#### Installing via pip
-
-```
-python -m pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
-```
-
-#### Installing via a package manager
-##### Ubuntu and Debian
-```
-sudo apt-get install python3-numpy python3-scipy python3-matplotlib ipython3 python3-notebook python3-pandas python3-sympy
+```sh
+git clone https://github.com/Angold-4/Perceptrons.git
+cd Perceptrons
+python3 -m venv .perceptrons
+source ./perceptrons/bin/activate
+pip install -r requirements.txt
 ```
 
-### 1. Train the neural network
-If all things are ready, run
+## Usage
+### Run with pre-trained model
+After that, you can run this application by type `python main.py <digit>`. For example:
+```python
+python main.py 7
+python main.py 4
 ```
-python3 train.py
-```
+It will generate these two MNIST-like handwritten digits respectively
 
-Then you will see the different patches(epoch) of training will be complete. 
+<img src="photo/7.png" width="200">
+<img src="photo/4.png" width="200">
 
-```
-Epoch 0 complete
-Epoch 1 complete
-Epoch 2 complete
-...
-Epoch 28 complete
-Epoch 29 complete
-```
 
-We use the [MNIST DB](http://yann.lecun.com/exdb/mnist/) as our training data, as you can see in [data/mnist.pkl.gz](data/mnist.pkl.gz).
+### Training your own model
 
-Since we are using the **stochastic gradient descent** technique as our learning method, we divide the training data into 30 pieces(or batches). If you want to check the trained output each round, you can change the [train.py](./train.py) file a little bit by changing the `test_data=None` into `test_data=test_data` in line 9.
-
-When you run that script again, you'll see the trained results of each epoch:
+#### Recongnizer
 
 ```
-Epoch 0: 8980 / 10000
-Epoch 1: 9162 / 10000
-Epoch 2: 9229 / 10000
-...
-Epoch 29: 9438 / 10000
+cd regcingnize
+python train.py
 ```
 
-As you can see, after just a single epoch this has reached 8980 out of 10,000, and the number continues to grow, and the trained network gives us a classification rate of about 95 percent - *94.38* percent at its peak ("Epoch 29").
+For more information, you may refer to the information listed in [recongnize](https://github.com/Angold-4/Perceptrons/tree/main/recongnize).
 
-After the training complete, the program will save the trained model in [recongnition_model.pkl](./recongnition_model) for further use.
-
-### 2. Using the trained model to recognize image
-
-We also provide a way to recognize the image (png, jpeg) directly -- rather than using the pkl training data as one of the application of this small neural network.
-
-You can use this application by calling:
-```
-python3 main.py <img filename>
-```
-
-For example: Consider some random sample images in [sample](./sample).
-
-![7.png](./sample/7.png)
+#### Generator (gans)
 
 ```
-> $ python3 main.py sample/7.png
-Recognized Value: 9
-Confidence: [97.95279745]%
+cd gans
+python train.py
 ```
 
+<img src="./photo/init.png" width="250"> <img src="./photo/ep5.png" width="250"> <img src="./photo/out.png" width="250">
 
-![1218.png](./sample/1218.png)
+**MNIST-like generated images before, middle & after training.**
 
-```
-> $ python3 main.py sample/1218.png
-Recognized Value: 0
-Confidence: [99.99797855]%
-```
+## Acknowledgement
 
+This is my first project in neural networks, although it just consists of two independent parts -- both of them can be reproduced follow some online tutorials, I still find it very useful for me to understand what deep learning is trying to do, and how to achieve that. And here I want to thanks to all of these amazing and helpful online tutorials (videos).
 
+* **[GANs from scrach](https://medium.com/ai-society/gans-from-scratch-1-a-deep-introduction-with-code-in-pytorch-and-tensorflow-cb03cdcdba0f)** by Diego Gomez Mosquera
 
+* **[Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/chap1.html)** by Michael Nielsen
 
+* **[A Friendly Introduction to Generative Adversarial Networks (GANs)](https://www.youtube.com/watch?v=8L11aMN5KY8)** by Luis Serrano 
 
-
+![photo/gans.jpeg](photo/gans.jpeg)
