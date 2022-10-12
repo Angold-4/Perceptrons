@@ -96,7 +96,7 @@ while True:
     rec_value = np.argmax(results)
     p = float(results[rec_value])
 
-    if p > 0.95 and rec_value == ex:
+    if p > 0.995 and rec_value == ex:
         images = vec2img(gen_vec).data.cpu()
         # Make horizontal grid from image tensor
         horizontal_grid = vutils.make_grid(
