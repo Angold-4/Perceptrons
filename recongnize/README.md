@@ -40,7 +40,7 @@ Epoch 28 complete
 Epoch 29 complete
 ```
 
-We use the [MNIST DB](http://yann.lecun.com/exdb/mnist/) as our training data, as you can see in [data/mnist.pkl.gz](data/mnist.pkl.gz).
+We use the [MNIST DB](http://yann.lecun.com/exdb/mnist/) as our training data, as you can see in [data/mnist.pkl.gz](../data/mnist.pkl.gz).
 
 Since we are using the **stochastic gradient descent** technique as our learning method, we divide the training data into 30 pieces(or batches). If you want to check the trained output each round, you can change the [train.py](./train.py) file a little bit by changing the `test_data=None` into `test_data=test_data` in line 9.
 
@@ -56,7 +56,7 @@ Epoch 29: 9438 / 10000
 
 As you can see, after just a single epoch this has reached 8980 out of 10,000, and the number continues to grow, and the trained network gives us a classification rate of about 95 percent - *94.38* percent at its peak ("Epoch 29").
 
-After the training complete, the program will save the trained model in [recongnition_model.pkl](./recongnition_model) for further use.
+After the training complete, the program will save the trained model in [recongnition_model.pkl](../model/recongnition_model) for further use.
 
 ### 2. Using the trained model to recognize image
 
@@ -67,9 +67,9 @@ You can use this application by calling:
 python3 main.py <img filename>
 ```
 
-For example: Consider some random sample images in [sample](./sample).
+For example: Consider some random sample images in [sample](../sample).
 
-![7.png](./sample/7.png)
+![7.png](../sample/7.png)
 
 ```
 > $ python3 main.py sample/7.png
@@ -78,7 +78,7 @@ Confidence: [97.95279745]%
 ```
 
 
-![1218.png](./sample/1218.png)
+![1218.png](../sample/1218.png)
 
 ```
 > $ python3 main.py sample/1218.png
